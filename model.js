@@ -1,7 +1,9 @@
 const tf = require('@tensorflow/tfjs-node');
+const Movie = require("./models/movie");
 
 const loadData = async () => {
   // Ambil seluruh data movie dari database
+  const movies = await Movie.find();
 
   const movie_arr = [];
   for (let i = 0; i < movies.length; i++) {
@@ -24,6 +26,7 @@ const recommend = async function recommend(userId) {
 
   const movie_arr = tf.tensor(movie_data);
   // Ambil seluruh data movie dari database
+  const movies = await Movie.find();
 
   const movie_len = movie_data.length;
 
